@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SpeechCoach</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: auto;
+            padding: 2rem;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+        form {
+            margin-top: 2rem;
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .block {
+            margin-top: 2.5rem;
+        }
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            resize: vertical;
+            background-color: #fdfdfd;
+        }
+        input[type="file"] {
+            padding: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #0070f3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        button:hover {
+            background-color: #005ccc;
+        }
+        em {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎙️ AI SpeechCoach</h1>
+
+    {% if speech_prompt %}
+        <div class="block">
+            <h3>🎯 Your Random Speech Prompt</h3>
+            <p><em>{{ speech_prompt }}</em></p>
+        </div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <label for="audio">Upload your 1-minute MP3:</label><br>
+        <input type="file" name="audio" accept="audio/mpeg" required>
+        <br><br>
+        <button type="submit">Get AI Feedback</button>
+    </form>
+
+    {% if transcription %}
+        <div class="block">
+            <h3>📝 Transcription</h3>
+            <textarea readonly>{{ transcription }}</textarea>
+        </div>
+    {% endif %}
+
+    {% if feedback %}
+        <div class="block">
+            <h3>💬 AI Feedback</h3>
+            <textarea readonly>{{ feedback }}</textarea>
+        </div>
+    {% endif %}
+</body>
+</html>
